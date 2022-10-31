@@ -8,7 +8,7 @@ from FaashionSegNet import fashionsegnet
 from fashionsegnet_training import (CE, Focal_Loss, dice_loss_with_CE,
                                   dice_loss_with_Focal_Loss)
 from utils.callbacks import ExponentDecayScheduler, LossHistory
-from utils.dataloader import PSPnetDataset
+from utils.dataloader import FashionSegNetDataset
 from utils.utils_metrics import Iou_score, f_score
 
 
@@ -95,8 +95,8 @@ if __name__ == "__main__":
                 optimizer = Adam(lr=lr),
                 metrics = [f_score()])
 
-        train_dataloader    = PSPnetDataset(train_lines, input_shape, batch_size, num_classes, VOCdevkit_path)
-        val_dataloader      = PSPnetDataset(val_lines, input_shape, batch_size, num_classes, VOCdevkit_path)
+        train_dataloader    = FashionSegNetDataset(train_lines, input_shape, batch_size, num_classes, VOCdevkit_path)
+        val_dataloader      = FashionSegNetDataset(val_lines, input_shape, batch_size, num_classes, VOCdevkit_path)
 
         print('Train on {} samples, val on {} samples, with batch size {}.'.format(len(train_lines), len(val_lines), batch_size))
         model.fit_generator(
@@ -130,8 +130,8 @@ if __name__ == "__main__":
                 optimizer = Adam(lr=lr),
                 metrics = [f_score()])
 
-        train_dataloader    = PSPnetDataset(train_lines, input_shape, batch_size, num_classes, True, VOCdevkit_path)
-        val_dataloader      = PSPnetDataset(val_lines, input_shape, batch_size, num_classes, False, VOCdevkit_path)
+        train_dataloader    = FashionSegNetDataset(train_lines, input_shape, batch_size, num_classes, True, VOCdevkit_path)
+        val_dataloader      = FashionSegNetDataset(val_lines, input_shape, batch_size, num_classes, False, VOCdevkit_path)
 
         print('Train on {} samples, val on {} samples, with batch size {}.'.format(len(train_lines), len(val_lines), batch_size))
         model.fit_generator(
