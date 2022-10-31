@@ -10,7 +10,7 @@ from PIL import Image
 from utils.utils import cvtColor, preprocess_input
 
 
-class PSPnetDataset(keras.utils.Sequence):
+class FashionSegNetDataset(keras.utils.Sequence):
     def __init__(self, annotation_lines, input_shape, batch_size, num_classes, train, dataset_path):
         self.annotation_lines   = annotation_lines
         self.length             = len(self.annotation_lines)
